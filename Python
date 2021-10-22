@@ -1,0 +1,36 @@
+#Sort Characters By Frequency
+
+Example: 
+Input: s = "tree"
+Output: "eert"
+Explanation: 'e' appears twice while 'r' and 't' both appear once.
+So 'e' must appear before both 'r' and 't'. Therefore "eetr" is also a valid answer.
+
+Actual Code: 
+
+from collections import Counter
+
+class Solution(object):
+    def frequencySort(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        my_string = s
+        string_len = len(my_string)
+
+        my_dict = {}
+        counter = Counter(my_string)
+        for each in my_string:
+            if each != ' ':
+                my_dict[each] = counter[each]
+
+        sorted_dict = {}
+        sorted_keys = reversed(sorted(my_dict, key=my_dict.get))
+        out_string = ""
+
+        for w in sorted_keys:
+            sorted_dict[w] = my_dict[w]
+            out_string = out_string + str(w) *my_dict[w]
+        
+        return out_string
